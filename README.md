@@ -1,10 +1,14 @@
 # Shareable Grok Voice phone-call setup (outside the US)
 
+**Quick start: paste this link into your Grok Bot and say "set this up for me"**
+
+https://github.com/forcequit/twilio-grok-voice-bridge
+
 ![Place AI phone calls outside the US](steps.png)
 
-Grok Bot's built-in calling only works with **US numbers**. This folder is a templated, sanitized copy of the self-hosted bridge that lets a Grok Bot place real outbound calls anywhere Twilio will dial, using **Twilio Programmable Voice** and **xAI Grok Voice** (realtime).
+Grok Bot's built-in phone calling is only available to **users in the US**, and it can only **call US numbers**. If you are outside the US, you cannot use it at all. This self-hosted Twilio + xAI Grok Voice bridge fixes both: you can set it up from anywhere, and call numbers Twilio will dial in your country.
 
-You do **not** need Omarchy Linux, and you do not need this package to talk to anyone else's machine. You run your own bridge, with your own Twilio number and xAI key, then give your bot a short skill so it can place, steer, and hang up calls.
+You do **not** need Omarchy Linux, and you do not need this package to talk to anyone else's machine. You run your own bridge, with your own Twilio number and xAI key. The main path is to paste this repo into your Grok Bot and ask it to set things up (see `AGENTS.md`).
 
 Copy the folder, fill your own secrets locally, and keep `.env` off git and out of chat.
 
@@ -12,8 +16,9 @@ Copy the folder, fill your own secrets locally, and keep `.env` off git and out 
 
 | Path | What it is |
 |------|------------|
+| `AGENTS.md` | Instructions for a Grok Bot that has been asked to set this up |
 | `twilio-grok-voice-bridge/` | Template server: Node source, `.env.example`, systemd units, Dockerfile, Compose file, and a Cloudflare Tunnel script |
-| `skill/SKILL.md` | Generic Grok Bot skill you can paste into your own bot |
+| `skill/SKILL.md` | Fallback skill you can paste into your bot if you wire calling yourself |
 | `steps.png` | One-page steps graphic |
 | `README.md` | This guide |
 
@@ -139,12 +144,11 @@ After the hostname is known, set `PUBLIC_HOST` (or `PUBLIC_URL`) and restart. A 
 
 ## Wire it to your Grok Bot
 
-1. Register the always-on computer with Grok Bot, or run the bridge on a host the bot can reach over HTTPS.
-2. Paste `skill/SKILL.md` into your bot's skill library.
-3. Fill the placeholders: `YOUR_MACHINE_ID`, `YOUR_BRIDGE_DIR`, and `YOUR_BRIDGE_BASE_URL` if you call it remotely.
-4. Tell the bot when it may place a call. Machine commands on your computer will still show an approval card.
+**Main path:** paste https://github.com/forcequit/twilio-grok-voice-bridge into your Grok Bot and say "set this up for me" (or "do this"). The bot should follow `AGENTS.md`: ask you for a Twilio account and local number, an xAI API key, and optional voice clone; run the bridge on your always-on computer or a VPS; set up a tunnel; install the calling skill into its own library; and place a test call.
 
-Etiquette is in the skill: identify as the owner's AI assistant, never as the person; call only when asked; don't invent facts; offer a call-back.
+**Fallback:** if you prefer to wire it yourself, paste `skill/SKILL.md` into your bot's skill library, fill `YOUR_MACHINE_ID`, `YOUR_BRIDGE_DIR`, and `YOUR_BRIDGE_BASE_URL` if you call it remotely, and tell the bot when it may place a call. Machine commands on your computer will still show an approval card.
+
+Etiquette is in `AGENTS.md` and the skill: identify as the owner's AI assistant, never as the person; call only when asked; don't invent facts; offer a call-back.
 
 ## If you don't have Omarchy
 

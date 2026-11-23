@@ -2,7 +2,7 @@
 
 Sanitized, Docker-ready template for placing outbound AI phone calls with **Twilio** and **xAI Grok Voice** (realtime). Derived from the public project at https://github.com/jeffhuber/twilio-grok-voice-bridge (MIT). This copy is generic: it does not include anyone's phone numbers, API keys, or voice ids.
 
-Use it when Grok Bot's built-in calling cannot reach you (it is limited to US numbers). You do **not** need Omarchy Linux. Any always-on computer, or a small VPS, is enough.
+Use it when Grok Bot's built-in calling is not available to you. That feature is only offered to **users in the US**, and it can only **call US numbers** — so outside the US you cannot use it at all. This bridge fixes both. You do **not** need Omarchy Linux. Any always-on computer, or a small VPS, is enough.
 
 ⚠️ **Experimental**: This bridge is a proof-of-concept for wiring Twilio voice to xAI Grok Voice realtime. It is not production-hardened out of the box. Always configure authentication (`BRIDGE_API_KEY`), review AI disclosure requirements for your jurisdiction, and test recording/consent policies before deploying.
 

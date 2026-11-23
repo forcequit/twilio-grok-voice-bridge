@@ -3,8 +3,9 @@ name: grok-voice-phone-calls
 description: >-
   Use whenever you need to place a real outbound phone call via the owner's
   self-hosted Twilio + xAI Grok Voice bridge. Use this instead of Grok Bot's
-  built-in calling when the destination is outside the US, or whenever the
-  owner has configured this bridge.
+  built-in calling when the owner is outside the US (built-in calling is only
+  available to US users and only calls US numbers), or whenever the owner has
+  configured this bridge.
 ---
 
 # Outbound phone calls via the Twilio + Grok Voice bridge
