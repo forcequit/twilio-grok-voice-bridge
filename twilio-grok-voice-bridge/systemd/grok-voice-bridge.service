@@ -1,0 +1,16 @@
+[Unit]
+Description=Twilio <-> Grok Voice bridge (HTTP API on :3000)
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+WorkingDirectory=%h/twilio-grok-voice-bridge
+EnvironmentFile=-%h/twilio-grok-voice-bridge/.env
+# Point this at your node binary if it is not /usr/bin/node (`which node`).
+ExecStart=/usr/bin/node src/server.js
+Restart=always
+RestartSec=5
+
+[Install]
+WantedBy=default.target

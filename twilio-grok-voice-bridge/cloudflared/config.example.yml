@@ -1,0 +1,10 @@
+# Copy to config.yml after: cloudflared tunnel login && cloudflared tunnel create grok-voice-bridge
+# Then: cloudflared tunnel route dns grok-voice-bridge bridge.example.com
+# Never commit the credentials JSON or a real token.
+tunnel: <TUNNEL_UUID>
+credentials-file: /home/YOUR_USER/.cloudflared/<TUNNEL_UUID>.json
+
+ingress:
+  - hostname: bridge.example.com
+    service: http://127.0.0.1:3000
+  - service: http_status:404

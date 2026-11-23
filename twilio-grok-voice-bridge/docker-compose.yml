@@ -1,0 +1,21 @@
+services:
+  bridge:
+    build: .
+    restart: unless-stopped
+    env_file: .env
+    environment:
+      PORT: "3000"
+    ports:
+      - "127.0.0.1:3000:3000"
+
+  # Optional: a dashboard-managed Cloudflare Tunnel.
+  # In Zero Trust, publish your hostname to http://bridge:3000, then:
+  #   docker compose --profile tunnel up --build -d
+  tunnel:
+    image: cloudflare/cloudflared:latest
+    restart: unless-stopped
+    command: tunnel --no-autoupdate run --token ${CLOUDFLARE_TUNNEL_TOKEN}
+    depends_on:
+      - bridge
+    profiles:
+      - tunnel

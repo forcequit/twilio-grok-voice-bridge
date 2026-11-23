@@ -1,0 +1,15 @@
+[Unit]
+Description=Cloudflare Tunnel for the Grok Voice bridge
+After=network-online.target grok-voice-bridge.service
+Wants=grok-voice-bridge.service
+
+[Service]
+Type=simple
+WorkingDirectory=%h/twilio-grok-voice-bridge
+EnvironmentFile=-%h/twilio-grok-voice-bridge/.env
+ExecStart=%h/twilio-grok-voice-bridge/scripts/tunnel.sh
+Restart=always
+RestartSec=10
+
+[Install]
+WantedBy=default.target
